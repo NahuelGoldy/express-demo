@@ -5,9 +5,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const userRoutes = require('./api/routes/users');
+const config = require('./api/config/config');
 
-// connection string to cloud MongoDB sandbox
-mongoose.connect('mongodb://127.0.0.1:27017/express-api-server');
+// connection string to MongoDB
+mongoose.connect(config.mongo.uri + config.mongo.db);
 
 app.use(bodyParser.json());
 
