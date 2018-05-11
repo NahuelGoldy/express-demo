@@ -8,7 +8,7 @@ const userRoutes = require('./api/routes/users');
 const config = require('./api/config/config');
 
 // connection string to MongoDB
-mongoose.connect(config.mongo.uri + config.mongo.db);
+mongoose.connect(config.mongo.connectionString);
 
 app.use(bodyParser.json());
 
