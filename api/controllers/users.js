@@ -25,6 +25,9 @@ exports.findAll = (req, res) => {
     return User.find()
         .then(users => {
             return users;
+        })
+        .catch(err => {
+            res.status(500).send(err);
         });
 };
 
@@ -34,6 +37,9 @@ exports.findOne = (req, res) => {
         .exec()
         .then(user => {
             return user;
+        })
+        .catch(err => {
+            res.status(500).send(err);
         });
 };
 
