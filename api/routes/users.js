@@ -27,9 +27,13 @@ const upload = multer({storage: storage, limits: {
 }});
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'GET handler'
-    });
+    User.findAll(req, res)
+        .then(users => {
+            res.json(users);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 
 router.post('/', upload.single('profileImage'), (req, res, next) => {
@@ -42,11 +46,14 @@ router.post('/', upload.single('profileImage'), (req, res, next) => {
         });
 });
 
-router.get('/:id', (req, res, next) => {
-   const id = req.params.id;
-    res.status(200).json({
-        message: 'GET handler for product with ID=' + id
-    });
+router.get('/:em', (req, res, next) => {
+    User.findOne(req, res)
+        .then(user => {
+            res.json(user);
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });
 });
 
 module.exports = router;

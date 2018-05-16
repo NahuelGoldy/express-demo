@@ -10,6 +10,8 @@ const config = require('./api/config/config');
 // connection string to MongoDB
 mongoose.connect(config.mongo.connectionString);
 
+// access to /uploads directory
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 
 // custom Routes
